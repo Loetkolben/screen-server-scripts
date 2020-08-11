@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2020 Loetkolben
+# SPDX-License-Identifier: CC0-1.0
+
+[Unit]
+Description=GameSrv %i
+After=network.target
+
+[Service]
+User=gamesrv
+Group=gamesrv
+
+Type=forking
+PIDFile=/opt/gamesrv/instances/%i/screen.pid
+WorkingDirectory=/opt/gamesrv/instances/%i
+
+ExecStart=/opt/gamesrv/instances/%i/CTL.sh start
+# Sleep a bit so that the script has time to write the PID file
+ExecStartPost=/bin/sleep 1
+
+ExecStop=/opt/gamesrv/instances/%i/CTL.sh stop
+
+
+# Read only mapping of /usr /boot and /etc
+ProtectSystem=full
+# /home, /root and /run/user seem to be empty from within the unit.
+ProtectHome=true
+
+# /proc/sys, /sys, /proc/sysrq-trigger, /proc/latency_stats, /proc/acpi, /proc/timer_stats, /proc/fs and /proc/irq
+# will be read-only within the unit. It is recommended to turn this on for most services.
+# Implies MountAPIVFS=yes
+ProtectKernelTunables=true
+
+# Block module system calls, also /usr/lib/modules.
+# If in system mode and User= is used, implies NoNewPrivileges=yes
+ProtectKernelModules=true
+
+# If true, cgroups(7) hierarchies will be made read-only to all processes of the unit.
+# Implies MountAPIVFS=yes
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

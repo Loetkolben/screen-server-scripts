@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2020 Loetkolben
+# SPDX-License-Identifier: CC0-1.0
+
+[Unit]
+Description=GameSrv Backup Timer for %i
+
+[Timer]
+# Try to beackup each hour. See systemd.time(7) for more info.
+# Do it on the 41st minute (randomly selected) to prevent a resource fight at each full hour.
+OnCalendar=*-*-* *:41:00
+
+# Delay the timer by a randomly selected amount of time between 0 and the specified time value.
+RandomizedDelaySec=15min
+
+[Install]
+WantedBy=timers.target

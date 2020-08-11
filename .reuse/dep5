@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: screen-server-scripts
+Upstream-Contact: Loetkolben <loetkolben@procnull.de>
+Source: https://github.com/Loetkolben/screen-server-scripts
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...

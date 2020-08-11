@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2020 Loetkolben
+# SPDX-License-Identifier: CC0-1.0
+
+# Ignore Everything
+/*
+/*/
+
+# Except These
+!.gitignore
+!.gitmodules
+!.gitattributes
+
+!README*
+!LICENSE*
+!LICENSES/
+!CONTRIBUTORS*
+!CONTRIBUTING*
+!.reuse
+
+# Project
+!*.sh
+!/systemd
